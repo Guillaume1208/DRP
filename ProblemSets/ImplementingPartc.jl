@@ -31,7 +31,7 @@ function tridiagonal_solve(A, b)
     rho = similar(b)
 
     #first values:
-    gamma[1] = p[1]/a[1]
+    gamma[1] = p[1]/a[1] #This was the error, we had a[1]/p[1] it is supposed to be p[1]/a[1]
     rho[1] = b[1]/a[1]
     
     #Forward elimination
@@ -92,9 +92,8 @@ function gradF(a, b, c, p)
     v = computeV(A, c, x)
 
     grad = similar(p)
-    n = length(p)
 
-    for k = 1:n
+    for k = 1:length(p)
         grad[k] = v[k]*x[k+1] + v[k+1]*x[k]
     end
 
